@@ -8,27 +8,27 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Work+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0e0f11;
-    --bg2: #15171a;
-    --bg3: #1c1f23;
+    --bg: #1a1d27;
+    --bg2: #1e2235;
+    --bg3: #252840;
     --border: rgba(255,255,255,0.07);
-    --border2: rgba(255,255,255,0.12);
-    --text: #e8e6e0;
-    --muted: #6b6a65;
-    --muted2: #9b9992;
-    --accent: #c8f060;
-    --accent2: #a3d43a;
-    --accent-dim: rgba(200,240,96,0.12);
-    --blue: #6eb5ff;
-    --blue-dim: rgba(110,181,255,0.1);
-    --amber: #f5c842;
-    --amber-dim: rgba(245,200,66,0.1);
-    --teal: #5ddbb4;
-    --teal-dim: rgba(93,219,180,0.1);
-    --coral: #ff7f6b;
-    --coral-dim: rgba(255,127,107,0.1);
-    --purple: #b09eff;
-    --purple-dim: rgba(176,158,255,0.1);
+    --border2: rgba(255,255,255,0.13);
+    --text: #dde1f0;
+    --muted: #5c6180;
+    --muted2: #8b90a7;
+    --accent: #79b8f3;
+    --accent2: #5a9fd4;
+    --accent-dim: rgba(121,184,243,0.12);
+    --blue: #79b8f3;
+    --blue-dim: rgba(121,184,243,0.1);
+    --amber: #f0883e;
+    --amber-dim: rgba(240,136,62,0.12);
+    --teal: #7ec8a4;
+    --teal-dim: rgba(126,200,164,0.1);
+    --coral: #f97583;
+    --coral-dim: rgba(249,117,131,0.1);
+    --purple: #c792ea;
+    --purple-dim: rgba(199,146,234,0.1);
     --r: 8px;
     --r-lg: 14px;
   }
@@ -116,7 +116,7 @@
   .nav-item.active {
     background: var(--accent-dim);
     color: var(--accent);
-    border-color: rgba(200,240,96,0.2);
+    border-color: rgba(121,184,243,0.2);
   }
   .nav-dot {
     width: 6px; height: 6px;
@@ -216,7 +216,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse 60% 50% at 50% 110%, rgba(200,240,96,0.06), transparent);
+    background: radial-gradient(ellipse 60% 50% at 50% 110%, rgba(121,184,243,0.08), transparent);
     pointer-events: none;
   }
 
@@ -1574,7 +1574,7 @@ function updateOverall() {
 
   // Current phase — find first incomplete
   const phaseNames = { p1: 'Descoberta', p2: 'Estratégia', p3: 'Design', p4: 'Build (GP)', p5: 'QA + Launch' };
-  const phaseColors = { p1: '#6eb5ff', p2: '#5ddbb4', p3: '#b09eff', p4: '#f5c842', p5: '#ff7f6b' };
+  const phaseColors = { p1: '#79b8f3', p2: '#7ec8a4', p3: '#c792ea', p4: '#f0883e', p5: '#f97583' };
   const phaseWeeks  = { p1: 'Semanas 1–2', p2: 'Semanas 3–4', p3: 'Semanas 5–7', p4: 'Semanas 6–8', p5: 'Semanas 9–10' };
 
   let currentId = null;
@@ -1670,11 +1670,11 @@ function setSyncStatus(status) {
   const lbl = document.getElementById('sync-label');
   if (!dot || !lbl) return;
   const map = {
-    saving:  { color: '#f5c842', text: 'salvando…' },
-    saved:   { color: '#5ddbb4', text: 'sincronizado' },
-    error:   { color: '#ff7f6b', text: 'erro ao salvar' },
-    loading: { color: '#6eb5ff', text: 'carregando…' },
-    offline: { color: '#6b6a65', text: 'offline' },
+    saving:  { color: '#f0883e', text: 'salvando…' },
+    saved:   { color: '#7ec8a4', text: 'sincronizado' },
+    error:   { color: '#f97583', text: 'erro ao salvar' },
+    loading: { color: '#79b8f3', text: 'carregando…' },
+    offline: { color: '#5c6180', text: 'offline' },
   };
   const s = map[status] || map.offline;
   dot.style.background = s.color;
