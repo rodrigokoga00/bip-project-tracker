@@ -8,27 +8,27 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Work+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #1a1d27;
-    --bg2: #1e2235;
-    --bg3: #252840;
-    --border: rgba(255,255,255,0.07);
-    --border2: rgba(255,255,255,0.13);
-    --text: #dde1f0;
-    --muted: #5c6180;
-    --muted2: #8b90a7;
-    --accent: #79b8f3;
-    --accent2: #5a9fd4;
-    --accent-dim: rgba(121,184,243,0.12);
-    --blue: #79b8f3;
-    --blue-dim: rgba(121,184,243,0.1);
-    --amber: #f0883e;
-    --amber-dim: rgba(240,136,62,0.12);
-    --teal: #7ec8a4;
-    --teal-dim: rgba(126,200,164,0.1);
-    --coral: #f97583;
-    --coral-dim: rgba(249,117,131,0.1);
-    --purple: #c792ea;
-    --purple-dim: rgba(199,146,234,0.1);
+    --bg: #ffffff;
+    --bg2: #F1F2F3;
+    --bg3: #e2e4e7;
+    --border: rgba(12,35,64,0.1);
+    --border2: rgba(12,35,64,0.2);
+    --text: #0C2340;
+    --muted: #546579;
+    --muted2: #354159;
+    --accent: #da291c;
+    --accent2: #a31f15;
+    --accent-dim: rgba(218,41,28,0.1);
+    --blue: #7D8A99;
+    --blue-dim: rgba(125,138,153,0.1);
+    --amber: #0C2340;
+    --amber-dim: rgba(12,35,64,0.1);
+    --teal: #546579;
+    --teal-dim: rgba(84,101,121,0.1);
+    --coral: #da291c;
+    --coral-dim: rgba(218,41,28,0.1);
+    --purple: #354159;
+    --purple-dim: rgba(53,65,89,0.1);
     --r: 8px;
     --r-lg: 14px;
   }
@@ -116,11 +116,43 @@
   .nav-item.active {
     background: var(--accent-dim);
     color: var(--accent);
-    border-color: rgba(121,184,243,0.2);
+    border-color: rgba(218,41,28,0.2);
+  }
+  /* Estado ativo por fase: fundo da cor da etapa, texto branco */
+  .nav-item.active[data-phase="p1"] {
+    background: var(--blue);
+    color: #fff;
+    border-color: var(--blue);
+  }
+  .nav-item.active[data-phase="p2"] {
+    background: var(--teal);
+    color: #fff;
+    border-color: var(--teal);
+  }
+  .nav-item.active[data-phase="p3"] {
+    background: var(--purple);
+    color: #fff;
+    border-color: var(--purple);
+  }
+  .nav-item.active[data-phase="p4"] {
+    background: var(--amber);
+    color: #fff;
+    border-color: var(--amber);
+  }
+  .nav-item.active[data-phase="p5"] {
+    background: var(--coral);
+    color: #fff;
+    border-color: var(--coral);
+  }
+  /* Bolinha interna e percentual em branco quando o item de fase está ativo */
+  .nav-item.active[data-phase] .nav-dot {
+    background: #fff !important;
+  }
+  .nav-item.active[data-phase] .nav-pct {
+    color: rgba(255,255,255,0.85);
   }
   .nav-dot {
     width: 6px; height: 6px;
-    border-radius: 50%;
     flex-shrink: 0;
   }
   .nav-pct {
@@ -216,7 +248,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse 60% 50% at 50% 110%, rgba(121,184,243,0.08), transparent);
+    background: radial-gradient(ellipse 60% 50% at 50% 110%, rgba(218,41,28,0.07), transparent);
     pointer-events: none;
   }
 
@@ -294,15 +326,71 @@
     gap: 0;
     flex: 1;
     overflow: hidden;
+    opacity: 0.4;
   }
   .phase-row:hover {
     border-color: var(--border2);
     background: var(--bg3);
+    opacity: 0.7;
   }
   .phase-row.current-phase {
     border-width: 1.5px;
+    opacity: 1;
+  }
+  .phase-row.current-phase:hover {
+    opacity: 1;
+  }
+  .phase-row.phase-completed {
+    opacity: 1;
+  }
+  .phase-row.phase-completed:hover {
+    opacity: 1;
   }
   .phase-row.current-phase .phase-name { font-weight: 500; }
+
+  /* Phase row individual colors */
+  #phase-row-p1 { background: #7D8A99; border-color: transparent; }
+  #phase-row-p1 .phase-name,
+  #phase-row-p1 .phase-sub,
+  #phase-row-p1 .phase-pct-label { color: #fff; }
+  #phase-row-p1 .phase-bar-wrap { background: rgba(255,255,255,0.2); }
+  #phase-row-p1 .phase-color-bar { background: rgba(255,255,255,0.4) !important; }
+  #phase-row-p1:hover { background: #8e99a8; }
+
+  /* Barra de preenchimento branca em todos os cards de fase */
+  .phase-row .phase-bar-fill { background: #fff !important; }
+
+  #phase-row-p2 { background: #546579; border-color: transparent; }
+  #phase-row-p2 .phase-name,
+  #phase-row-p2 .phase-sub,
+  #phase-row-p2 .phase-pct-label { color: #fff; }
+  #phase-row-p2 .phase-bar-wrap { background: rgba(255,255,255,0.2); }
+  #phase-row-p2 .phase-color-bar { background: rgba(255,255,255,0.4) !important; }
+  #phase-row-p2:hover { background: #627585; }
+
+  #phase-row-p3 { background: #354159; border-color: transparent; }
+  #phase-row-p3 .phase-name,
+  #phase-row-p3 .phase-sub,
+  #phase-row-p3 .phase-pct-label { color: #fff; }
+  #phase-row-p3 .phase-bar-wrap { background: rgba(255,255,255,0.2); }
+  #phase-row-p3 .phase-color-bar { background: rgba(255,255,255,0.4) !important; }
+  #phase-row-p3:hover { background: #425068; }
+
+  #phase-row-p4 { background: #0C2340; border-color: transparent; }
+  #phase-row-p4 .phase-name,
+  #phase-row-p4 .phase-sub,
+  #phase-row-p4 .phase-pct-label { color: #fff; }
+  #phase-row-p4 .phase-bar-wrap { background: rgba(255,255,255,0.2); }
+  #phase-row-p4 .phase-color-bar { background: rgba(255,255,255,0.4) !important; }
+  #phase-row-p4:hover { background: #112d50; }
+
+  #phase-row-p5 { background: #da291c; border-color: transparent; }
+  #phase-row-p5 .phase-name,
+  #phase-row-p5 .phase-sub,
+  #phase-row-p5 .phase-pct-label { color: #fff; }
+  #phase-row-p5 .phase-bar-wrap { background: rgba(255,255,255,0.2); }
+  #phase-row-p5 .phase-color-bar { background: rgba(255,255,255,0.4) !important; }
+  #phase-row-p5:hover { background: #e83d31; }
 
   .phase-color-bar {
     width: 3px;
@@ -696,27 +784,27 @@
 
     <div class="nav-section">
       <div class="nav-section-label">Fases</div>
-      <div class="nav-item" onclick="goPage('p1')" id="nav-p1">
+      <div class="nav-item" onclick="goPage('p1')" id="nav-p1" data-phase="p1">
         <div class="nav-dot" style="background: var(--blue)"></div>
         Descoberta
         <span class="nav-pct" id="npct-p1">0%</span>
       </div>
-      <div class="nav-item" onclick="goPage('p2')" id="nav-p2">
+      <div class="nav-item" onclick="goPage('p2')" id="nav-p2" data-phase="p2">
         <div class="nav-dot" style="background: var(--teal)"></div>
         Estratégia
         <span class="nav-pct" id="npct-p2">0%</span>
       </div>
-      <div class="nav-item" onclick="goPage('p3')" id="nav-p3">
+      <div class="nav-item" onclick="goPage('p3')" id="nav-p3" data-phase="p3">
         <div class="nav-dot" style="background: var(--purple)"></div>
         Design
         <span class="nav-pct" id="npct-p3">0%</span>
       </div>
-      <div class="nav-item" onclick="goPage('p4')" id="nav-p4">
+      <div class="nav-item" onclick="goPage('p4')" id="nav-p4" data-phase="p4">
         <div class="nav-dot" style="background: var(--amber)"></div>
         Build (GP)
         <span class="nav-pct" id="npct-p4">0%</span>
       </div>
-      <div class="nav-item" onclick="goPage('p5')" id="nav-p5">
+      <div class="nav-item" onclick="goPage('p5')" id="nav-p5" data-phase="p5">
         <div class="nav-dot" style="background: var(--coral)"></div>
         QA + Launch
         <span class="nav-pct" id="npct-p5">0%</span>
@@ -790,7 +878,7 @@
 
         <!-- Phases list -->
         <div class="phases-list">
-          <div class="phase-row" onclick="goPage('p1')">
+          <div class="phase-row" id="phase-row-p1" onclick="goPage('p1')">
             <div class="phase-color-bar" style="background: var(--blue)"></div>
             <div class="phase-row-inner">
               <div class="phase-info">
@@ -803,7 +891,7 @@
               <div class="phase-pct-label" id="pct-p1">0%</div>
             </div>
           </div>
-          <div class="phase-row" onclick="goPage('p2')">
+          <div class="phase-row" id="phase-row-p2" onclick="goPage('p2')">
             <div class="phase-color-bar" style="background: var(--teal)"></div>
             <div class="phase-row-inner">
               <div class="phase-info">
@@ -816,7 +904,7 @@
               <div class="phase-pct-label" id="pct-p2">0%</div>
             </div>
           </div>
-          <div class="phase-row" onclick="goPage('p3')">
+          <div class="phase-row" id="phase-row-p3" onclick="goPage('p3')">
             <div class="phase-color-bar" style="background: var(--purple)"></div>
             <div class="phase-row-inner">
               <div class="phase-info">
@@ -829,7 +917,7 @@
               <div class="phase-pct-label" id="pct-p3">0%</div>
             </div>
           </div>
-          <div class="phase-row" onclick="goPage('p4')">
+          <div class="phase-row" id="phase-row-p4" onclick="goPage('p4')">
             <div class="phase-color-bar" style="background: var(--amber)"></div>
             <div class="phase-row-inner">
               <div class="phase-info">
@@ -842,7 +930,7 @@
               <div class="phase-pct-label" id="pct-p4">0%</div>
             </div>
           </div>
-          <div class="phase-row" onclick="goPage('p5')">
+          <div class="phase-row" id="phase-row-p5" onclick="goPage('p5')">
             <div class="phase-color-bar" style="background: var(--coral)"></div>
             <div class="phase-row-inner">
               <div class="phase-info">
@@ -1574,7 +1662,7 @@ function updateOverall() {
 
   // Current phase — find first incomplete
   const phaseNames = { p1: 'Descoberta', p2: 'Estratégia', p3: 'Design', p4: 'Build (GP)', p5: 'QA + Launch' };
-  const phaseColors = { p1: '#79b8f3', p2: '#7ec8a4', p3: '#c792ea', p4: '#f0883e', p5: '#f97583' };
+  const phaseColors = { p1: '#7D8A99', p2: '#546579', p3: '#354159', p4: '#0C2340', p5: '#da291c' };
   const phaseWeeks  = { p1: 'Semanas 1–2', p2: 'Semanas 3–4', p3: 'Semanas 5–7', p4: 'Semanas 6–8', p5: 'Semanas 9–10' };
 
   let currentId = null;
@@ -1610,20 +1698,25 @@ function updateOverall() {
     phaseSub.textContent = 'Todas as fases';
   }
 
-  // Highlight current phase row in the overview phases list
-  document.querySelectorAll('.phase-row').forEach(row => {
-    row.classList.remove('current-phase');
+  // Highlight current phase row & mark completed phases in the overview list
+  PHASES.forEach((p, idx) => {
+    const rows = document.querySelectorAll('.phase-row');
+    const row = rows[idx];
+    if (!row) return;
+    row.classList.remove('current-phase', 'phase-completed');
     row.style.borderColor = '';
-    row.style.background = '';
+
+    const c = countItems(p);
+    if (c.total > 0 && c.done === c.total) {
+      row.classList.add('phase-completed');
+    }
   });
   if (currentId) {
-    const col = phaseColors[currentId];
     const rows = document.querySelectorAll('.phase-row');
     const idx = PHASES.indexOf(currentId);
     if (rows[idx]) {
       rows[idx].classList.add('current-phase');
-      rows[idx].style.borderColor = col + '66';
-      rows[idx].style.background = col + '0d';
+      rows[idx].style.borderColor = 'rgba(255,255,255,0.5)';
     }
   }
 
@@ -1670,11 +1763,11 @@ function setSyncStatus(status) {
   const lbl = document.getElementById('sync-label');
   if (!dot || !lbl) return;
   const map = {
-    saving:  { color: '#f0883e', text: 'salvando…' },
-    saved:   { color: '#7ec8a4', text: 'sincronizado' },
-    error:   { color: '#f97583', text: 'erro ao salvar' },
-    loading: { color: '#79b8f3', text: 'carregando…' },
-    offline: { color: '#5c6180', text: 'offline' },
+    saving:  { color: '#d4720a', text: 'salvando…' },
+    saved:   { color: '#0d9e6e', text: 'sincronizado' },
+    error:   { color: '#d63a4a', text: 'erro ao salvar' },
+    loading: { color: '#1a6fd4', text: 'carregando…' },
+    offline: { color: '#546579', text: 'offline' },
   };
   const s = map[status] || map.offline;
   dot.style.background = s.color;
